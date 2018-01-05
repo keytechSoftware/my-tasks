@@ -1,0 +1,128 @@
+<div class="container">
+  <div class="table-responsive">
+    <div class="col-md-12">
+    <h3>{{Subject}}</h3>
+    <table>
+      <tr>
+        <td>
+          <kt-circle-progress #circleProg1
+              [percent]="CompletedPercent"
+              [boxSize]="110"
+              [radius]="50"
+              [lowColor]="'red'"
+              [middleColor]="'orange'"
+              [interColor]="'#f1c40f'"
+              [highColor]="'LimeGreen'"
+              [border]="15"
+              [time]="0"
+              [animateOnLoad]=false
+              (click)="circleProg1.animate()">
+            </kt-circle-progress>
+          </td>
+          <td class="text-center">
+            <table>
+              <tr class="spacer">
+                <td >
+                  Verbleibende Zeit bis Ende<br>
+                  <p style="font-size:20px">{{RemainingDays}} Tage</p>
+                </td>
+
+              
+              </tr>
+            <tr >
+                <td>
+                  Gesamter Zeitaufwand<br>
+                  <p style="font-size:20px">{{CompleteEffort}}</p>
+                </td>
+              </tr>
+            </table>
+        
+          </td>
+            
+          <td valign="top" style="padding-left:30px">
+            <div class="dropdown">
+              <button [disabled]="!allowBookTime" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Zeit buchen
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a (click)="bookTime(15)" style="cursor: pointer">15 min</a></li>
+                <li><a (click)="bookTime(30)" style="cursor: pointer">30 min</a></li>
+                <li><a (click)="bookTime(45)" style="cursor: pointer">45 min</a></li>
+                <li><a (click)="bookTime(60)" style="cursor: pointer">1 Stunde</a></li>
+                <li><a (click)="bookTime(120)" style="cursor: pointer">2 Stunden</a></li>
+                <li><a (click)="bookTime(240)" style="cursor: pointer">4 Stunden</a></li>
+                <li><a (click)="bookTime(480)" style="cursor: pointer">8 Stunden</a></li>
+              </ul>
+            </div>
+          </td>
+
+          <td valign="top" style="padding-left:30px">
+
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Fortschritt [%]
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li *ngFor="let number of progressValues"><a (click)="setProgress(number)" style="cursor: pointer">{{number}}%</a></li>
+              </ul>
+            </div>
+
+          </td>
+
+        </tr>
+    </table>
+<br>
+
+  <div *ngIf="task">
+      <table id="taskDetailsTable" class="table table-condensed table-hover"> 
+        <tbody>
+          <tr>
+              <td>Betreff</td>
+              <td>{{task.Subject}}</td>
+          </tr>
+          <tr>
+              <td>Status</td>
+              <td>{{task.TaskStatusDisplayText}}</td>
+          </tr>
+          <tr>
+              <td>Fortschritt</td>
+              <td>{{task.CompletedPercent}}%</td>
+          </tr>                                 
+          <tr>
+              <td>Besitzer</td>
+              <td>{{task.OwnerLong}}</td>
+          </tr>  
+          <tr>
+              <td>Geplanter Start</td>
+              <td>{{task.PlannedStart | epoch2date}}</td>
+          </tr>
+          <tr>
+              <td>Geplantes Ende</td>
+              <td>{{task.PlannedEnd | epoch2date}}</td>
+          </tr>
+          <tr>
+              <td>Erstellt von</td>
+              <td>{{task.CreatedByLong}}</td>            
+          </tr>
+          <tr>
+              <td>Erstellt am</td>
+              <td>{{task.CreatedAt | epoch2date}}</td>            
+          </tr>                    
+
+          <tr>
+              <td>Priorität</td>
+              <td>
+                <i *ngIf="task.Priority==1" class="glyphicon glyphicon-arrow-down" style="color:royalblue"></i>
+                <i *ngIf="task.Priority==2" class="glyphicon glyphicon-exclamation-sign" style="color:red"></i>
+                {{task.PriorityDisplayText}}
+              </td>
+          </tr>
+
+          <tr>
+              <td>Text (Vorschau)</td>
+              <td>{{task.Description}}</td>
+          </tr>  
+      </tbody>
+      </table>
+  </div>
+      </div>
+    </div>
+  </div>

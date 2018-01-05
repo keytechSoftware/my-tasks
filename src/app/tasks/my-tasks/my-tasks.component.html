@@ -1,0 +1,63 @@
+
+<div class="container">
+  <div class="table-responsive">
+    <div class="col-md-12">
+
+      <div class="well well-sm" *ngIf="recordsFound" >
+        <p class="text-left">{{headerText}}</p>
+
+          <div  class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+            <input id="tableFilterString" type="text" class="form-control" onkeyup="filterTable('myTasksTable',1)" placeholder="Beschreibung filtern...">
+          </div>
+
+      </div>
+
+      <table *ngIf="recordsFound" class="table table-hover" id ="myTasksTable"> 
+          <thead>
+            <tr>
+              <th>Fortschritt</th>
+              <th class="col-md-8">Beschreibung</th>
+              <th class="col-md-3">Priorität</th>
+              <th nowrap>Fällig bis</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let data of (queryResult | keys2)">
+              <td *ngFor="let key of (data.value | keys2 )" class="text-center" >
+                <kt-circle-progress #circleProg1
+                  [percent]="key.value.CompletedPercent"
+                  [boxSize]="60"
+                  [radius]="25"
+                  [lowColor]="'red'"
+                  [middleColor]="'orange'"
+                  [interColor]="'#f1c40f'"
+                  [highColor]="'LimeGreen'"
+                  [border]="5"
+                  [time]="0"
+                  (click)="circleProg1.animate()">
+                </kt-circle-progress>
+
+              </td>
+              <td *ngFor="let key of (data.value | keys2 )">
+                  <a [routerLink]="['/task-details']" [queryParams]="{elementKey: key.value.Key }"><b> {{key.value.Subject}}</b> </a><br>
+                  Status: <b>{{key.value.TaskStatusDisplayText}}</b><br>
+                  {{key.value.Description}}
+              </td>
+
+              <td *ngFor="let key of (data.value | keys2 )">
+                <i *ngIf="key.value.Priority==1" class="glyphicon glyphicon-arrow-down" style="color:royalblue"></i>
+                <i *ngIf="key.value.Priority==2" class="glyphicon glyphicon-exclamation-sign" style="color:red"></i>
+                {{key.value.PriorityDisplayText}}
+            </td>
+
+              <td *ngFor="let key of (data.value | keys2 )">{{key.value.PlannedEnd | epoch2date}}</td>
+            </tr>
+          </tbody>
+
+
+      </table>
+    </div>
+  </div>
+</div>
