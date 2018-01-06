@@ -14,7 +14,7 @@ export class HttpService {
               private alertService: AlertService) {}
 
   // ------------------------------------------------------------------
-  // Sendet einen POST Request an den Server
+  // Sends a POST request to the server
   // ------------------------------------------------------------------
   sendPostRequest(webApiUrl, body: any, headers?: Headers) {
 
@@ -35,7 +35,7 @@ export class HttpService {
     }
 
   // ------------------------------------------------------------------
-  // Sendet einen PUT Request an den Server
+  // Sends a PUT request to the server
   // ------------------------------------------------------------------
   sendPutRequest(webApiUrl, body: any) {
 
