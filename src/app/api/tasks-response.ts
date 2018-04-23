@@ -3,7 +3,7 @@
             public PageNumber: number,
             public Totalrecords: number,
             public PageSize: number,
-            public ElementList: ElementList[]
+            public ElementList: Element[]
         ){}
 
         public static ToArray(response:TasksResponse){  
@@ -15,7 +15,7 @@
         }
     };
     
-    export class ElementList {
+    export class Element {
         constructor(
             public Key: string,
             public KeyValueList: any[],

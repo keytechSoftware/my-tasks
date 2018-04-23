@@ -4,7 +4,7 @@ import { Subscription } from "rxjs/Subscription";
 
 import { HttpService } from "../../services/http.service";
 import { Server } from "../../shared/server";
-import { TasksResponse, ElementList } from "../../api/tasks-response";
+import { TasksResponse, Element } from "../../api/tasks-response";
 import { Tools } from "../../shared/tools";
 import { AlertService } from "../../services/alert.service";
 import { AuthService } from "../../services/auth.service";
@@ -24,7 +24,7 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   private elementKey: string;
   isElementKeyAvailable: boolean;
-  task: ElementList;
+  task: Element;
 
   Subject: string;
   CompletedPercent: number;
