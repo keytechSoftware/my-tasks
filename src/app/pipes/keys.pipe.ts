@@ -1,11 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+ * Converts the specified object to an array
+ * 
+ * @export
+ * @class KeysPipe
+ * @implements {PipeTransform}
+ */
 @Pipe({
   name: 'keys'
 })
-// ------------------------------------------------------------------
-// Converts the specified object to an array
-// ------------------------------------------------------------------ 
 export class KeysPipe implements PipeTransform {
 
   transform(value, args:string[]) : any { 
@@ -17,9 +21,13 @@ export class KeysPipe implements PipeTransform {
   }
 }
 
-// ------------------------------------------------------------------
-// Converts the specified list of objects into a list of KeyValue arrays
-// ------------------------------------------------------------------ 
+/**
+ * Converts the specified list of objects into a list of KeyValue arrays
+ * 
+ * @export
+ * @class KeyValuePipe
+ * @implements {PipeTransform}
+ */
 @Pipe({
   name: 'keys2'
 })

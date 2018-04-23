@@ -25,9 +25,12 @@ export class MyTasksComponent implements OnInit {
     this.setHeaderText();
   }
 
-  // ------------------------------------------------------------------
-  // Set the header text
-  // ------------------------------------------------------------------  
+
+  /**
+   * Set the header text
+   * 
+   * @memberof MyTasksComponent
+   */
   setHeaderText() {
 
     const currentUserFullName = Tools.getStorageValue('currentUserFullName');
@@ -49,9 +52,12 @@ export class MyTasksComponent implements OnInit {
 
   }
  
-  // ------------------------------------------------------------------
-  // Gets the user's tasks
-  // ------------------------------------------------------------------
+
+  /**
+   * Gets the user's tasks
+   * 
+   * @memberof MyTasksComponent
+   */
   async getTasks() { 
     var username: string = Tools.getStorageValue('currentUser');
 

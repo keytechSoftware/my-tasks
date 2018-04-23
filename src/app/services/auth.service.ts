@@ -17,18 +17,27 @@ authenticationChanged = new EventEmitter();
 private password: string = "";
 private userFullName: string
 
-// ------------------------------------------------------------------
-// Gets whether the user has logged on to the application.
-// ------------------------------------------------------------------
+/**
+ * Gets whether the user has logged on to the application
+ * 
+ * @readonly
+ * @type {boolean}
+ * @memberof AuthService
+ */
 get userIsAuthenticated(): boolean {
     let user: string = Tools.getStorageValue('currentUser');
     return user!=null;
 } 
 
 
-// ------------------------------------------------------------------
-// Log on the user in the application
-// ------------------------------------------------------------------
+/**
+ * Log on the user in the application
+ * 
+ * @param {string} username 
+ * @param {string} password 
+ * @returns 
+ * @memberof AuthService
+ */
 login(username: string, password: string){
 
 const loginUrl = Server.WebApiUrl + "/user/" + username;
@@ -59,9 +68,11 @@ return this.http.get(loginUrl, options)
     )
 }
 
-// ------------------------------------------------------------------
-// Log off the user in the application
-// ------------------------------------------------------------------
+/**
+ * Log off the user in the application
+ * 
+ * @memberof AuthService
+ */
 logout() {
     Tools.removeStorageValue('currentUser');
     Tools.removeStorageValue('currentUserFullName');
@@ -69,9 +80,15 @@ logout() {
     this.authenticationChanged.emit();
 }
 
-// ------------------------------------------------------------------
-// Gets the authorization header using the specified credentials.
-// ------------------------------------------------------------------
+/**
+ * Gets the authorization header using the specified credentials.
+ * 
+ * @private
+ * @param {string} username 
+ * @param {string} password 
+ * @returns 
+ * @memberof AuthService
+ */
 private getAuthHeaderWithCredentials(username: string, password: string){
     
     var headers = new Headers();              // Base64 Codierung von Benutzername & Passwort
@@ -80,9 +97,12 @@ private getAuthHeaderWithCredentials(username: string, password: string){
     return headers;
 }
 
-// ------------------------------------------------------------------
-// Gets the authorization header.
-// ------------------------------------------------------------------
+/**
+ * Gets the authorization header
+ * 
+ * @returns 
+ * @memberof AuthService
+ */
 getAuthHeader(){
     this.userFullName = this.getUserFullName;
 
@@ -92,9 +112,12 @@ getAuthHeader(){
     return this.getAuthHeaderWithCredentials(username, password);
 }
 
-// ------------------------------------------------------------------
-// Gets the full name of the user
-// ------------------------------------------------------------------
+/**
+ * Gets the users full name
+ * 
+ * @readonly
+ * @memberof AuthService
+ */
 get getUserFullName(){
     var userFullName = Tools.getStorageValue('currentUserFullName');
     if (userFullName == null)
@@ -103,17 +126,25 @@ get getUserFullName(){
         return userFullName;
 }
 
-// ------------------------------------------------------------------
-// Gets the name of the user
-// ------------------------------------------------------------------
+/**
+ * Gets the users name
+ * 
+ * @readonly
+ * @memberof AuthService
+ */
 get getUserName(){
     return Tools.getStorageValue('currentUser');
 }
 
 
-// ------------------------------------------------------------------
-// Gets the RequestOptions 
-// ------------------------------------------------------------------
+/**
+ * Gets the RequestOptions
+ * 
+ * @param {any} webApiUrl 
+ * @param {any} headers 
+ * @returns 
+ * @memberof AuthService
+ */
 getGetRequestOptions(webApiUrl, headers) {
     const options = new RequestOptions( 
     {

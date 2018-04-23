@@ -13,12 +13,17 @@ export class HttpService {
               private authService: AuthService,
               private alertService: AlertService) {}
 
-  // ------------------------------------------------------------------
-  // Sends a POST request to the server
-  // ------------------------------------------------------------------
-  sendPostRequest(webApiUrl, body: any, headers?: Headers) {
+/**
+ * Sends a POST request to the server
+ * 
+ * @param {string} webApiUrl 
+ * @param {*} body 
+ * @param {Headers} [headers] 
+ * @returns 
+ * @memberof HttpService
+ */
+sendPostRequest(webApiUrl: string, body: any, headers?: Headers) {
 
-    // Parameter für den Aufruf festlegen
     let header = this.authService.getAuthHeader();
 
     if (!headers == null) {
@@ -28,31 +33,38 @@ export class HttpService {
 
     const options = this.getRequestOptions(header, ResponseContentType.Json);
 
-    // Aufruf an den Server senden
     return this.http
       .post(webApiUrl, body, options)
       .map((response: Response) => response.json())
     }
 
-  // ------------------------------------------------------------------
-  // Sends a PUT request to the server
-  // ------------------------------------------------------------------
-  sendPutRequest(webApiUrl, body: any) {
 
-    // Parameter für den Aufruf festlegen
+  /**
+   * Sends a PUT request to the server
+   * 
+   * @param {string} webApiUrl 
+   * @param {*} body 
+   * @returns 
+   * @memberof HttpService
+   */
+  sendPutRequest(webApiUrl: string, body: any) {
+
     const headers = this.authService.getAuthHeader();
     const options = this.getRequestOptions(headers, ResponseContentType.Json);
 
-    // Aufruf an den Server senden
     return this.http
       .put(webApiUrl, body, options)
       .map((response: Response) => response.json())
     }
     
-  // ------------------------------------------------------------------
-  // Sends a GET request to the server
-  // ------------------------------------------------------------------
-  sendGetRequest(webApiUrl) {
+/**
+ * Sends a GET request to the server
+ * 
+ * @param {string} webApiUrl 
+ * @returns 
+ * @memberof HttpService
+ */
+  sendGetRequest(webApiUrl: string) {
 
     const headers = this.authService.getAuthHeader();
     const options = this.getRequestOptions(headers, ResponseContentType.Json);
@@ -62,10 +74,16 @@ export class HttpService {
       .map((response: Response) => response.json())
     }
 
-  // ------------------------------------------------------------------
-  // Gets the RequestOptions 
-  // ------------------------------------------------------------------
-  private getRequestOptions(headers, responseType: ResponseContentType) {
+  /**
+   * Gets the RequestOptions
+   * 
+   * @private
+   * @param {any} headers 
+   * @param {ResponseContentType} responseType 
+   * @returns 
+   * @memberof HttpService
+   */
+  private getRequestOptions(headers: any, responseType: ResponseContentType) {
        const options = new RequestOptions( 
       {
         headers: headers,
@@ -75,18 +93,21 @@ export class HttpService {
       return options;
   }
 
-  // ------------------------------------------------------------------
-  // Sends a GET request for a graphic to the server
-  // ------------------------------------------------------------------
-  sendGetImageRequest(webApiUrl) {
+
+  /**
+   * Sends a GET request for a graphic to the server
+   * 
+   * @param {string} webApiUrl 
+   * @returns 
+   * @memberof HttpService
+   */
+  sendGetImageRequest(webApiUrl: string) {
 
     const headers = this.authService.getAuthHeader();
     const options = this.getRequestOptions(headers, ResponseContentType.ArrayBuffer);
 
-    // Aufruf an den Server senden
     return this.http
       .get(webApiUrl, options)
-      
     }
 
 }

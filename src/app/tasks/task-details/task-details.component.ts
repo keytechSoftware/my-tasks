@@ -50,16 +50,23 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
     );
   }
 
-  // ------------------------------------------------------------------
-  // Cancel subscription in order to avoid a possible memory leak
-  // ------------------------------------------------------------------
+
+  /**
+   * Cancel subscription in order to avoid a possible memory leak
+   * 
+   * @memberof TaskDetailsComponent
+   */
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  // ------------------------------------------------------------------
-  // Checks whether the user is allowed to book times to the task
-  // ------------------------------------------------------------------
+
+  /**
+   * Checks whether the user is allowed to book times to the task
+   * 
+   * @param {string} elementKey 
+   * @memberof TaskDetailsComponent
+   */
   async checkAllowBookTime(elementKey: string) {
 
     let currentUser = Tools.getStorageValue("currentUser");
@@ -76,9 +83,13 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
 
   }
 
-  // ------------------------------------------------------------------
-  // Changes the progress of the task
-  // ------------------------------------------------------------------
+
+  /**
+   * Changes the progress of the task
+   * 
+   * @param {number} percent 
+   * @memberof TaskDetailsComponent
+   */
   async setProgress(percent: number) {
 
     var body = {"Key": this.elementKey, 
@@ -100,9 +111,13 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  // ------------------------------------------------------------------
-  // Book time to the task
-  // ------------------------------------------------------------------
+
+  /**
+   * Book time to the task
+   * 
+   * @param {number} minutes 
+   * @memberof TaskDetailsComponent
+   */
   async bookTime(minutes: number) {
     var epochMilliseconds = new Date().getTime()
     var epochDateString = "/Date(" + epochMilliseconds  + ")/"
@@ -130,9 +145,13 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
 
   }
 
-  // ------------------------------------------------------------------
-  // Determines the data of a keytech task
-  // ------------------------------------------------------------------
+
+  /**
+   * Determines the data of a keytech task
+   * 
+   * @param {string} elementKey 
+   * @memberof TaskDetailsComponent
+   */
   async getTaskDetails(elementKey: string) { 
 
     try {
